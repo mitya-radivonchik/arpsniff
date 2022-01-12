@@ -9,7 +9,7 @@ void printUsage(const char* argv0) {
 }
 
 int main(int argc, char** argv) {
-    if (argc != 3) {
+    if (!checkArgs(argc, argv)) {
         printUsage(argv[0]);
         return 0;
     }
