@@ -31,11 +31,11 @@ public:
     ArpSocket(const std::string& ifaceName) : _buf(new uint8_t[_bufSize]) {
         unsigned ifIndex = if_nametoindex(ifaceName.c_str());
         if (ifIndex == 0)
-            throw std::runtime_error(std::string("No interface with name ") + ifaceName);
+            throw std::runtime_error("No interface with name " + ifaceName);
 
         _fd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));
         if (_fd == -1)
-            throw std::runtime_error(std::string("Failed to open a socket: ") + std::string(strerror(errno)));
+            throw std::runtime_error("Failed to open a socket: " + std::string(strerror(errno)));
 
         struct sockaddr_ll iface = {
             .sll_family = AF_PACKET,
@@ -43,7 +43,7 @@ public:
             .sll_ifindex = (int)ifIndex,
         };
         if (bind(_fd, (const sockaddr*) &iface, sizeof(iface)) != 0)
-            throw std::runtime_error(std::string("Failed to bind: ") + std::string(strerror(errno)));
+            throw std::runtime_error("Failed to bind: " + std::string(strerror(errno)));
     }
 
     ArpSocket(const ArpSocket&) = delete;
@@ -66,7 +66,7 @@ public:
 
         int rc = read(_fd, _buf.get(), _bufSize);
         if (rc <= 0)
-            throw std::runtime_error(std::string("Socket poll failed: ") + std::string(strerror(errno)));
+            throw std::runtime_error("Socket poll failed: " + std::string(strerror(errno)));
 
         return ArpPacket(_buf.get(), rc);
     }

@@ -32,7 +32,7 @@ public:
     VendorMap(const std::string& ouiPath) {
         std::fstream s(ouiPath);
         if (!s.is_open())
-            throw std::runtime_error(std::string("Could not open oui file: ") + ouiPath);
+            throw std::runtime_error("Could not open oui file: " + ouiPath);
         
         std::string line;
         // Skip header
@@ -54,7 +54,7 @@ public:
     std::string Lookup(const MacPrefix& mac) const {
         auto it = _vendors.find(mac);
         if (it == _vendors.end())
-            return std::string("<unknown vendor>");
+            return "<unknown vendor>";
 
         return it->second;
     }
