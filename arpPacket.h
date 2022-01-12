@@ -41,15 +41,15 @@ private:
     }
 public:
     ArpPacket() : _valid(false) {}
-    ArpPacket(std::shared_ptr<uint8_t> buf, size_t len) : _valid(false) {
+    ArpPacket(const uint8_t* buf, size_t len) : _valid(false) {
         if (len < sizeof(struct ethhdr) + sizeof(struct arphdr))
             return;
 
-        struct ethhdr* eth = (struct ethhdr*) buf.get();
+        const struct ethhdr* eth = (struct ethhdr*) buf;
         if (ntohs(eth->h_proto) != ETH_P_ARP)
             return;
 
-        struct arphdr* hdr = (struct arphdr*) (eth + 1);
+        const struct arphdr* hdr = (struct arphdr*) (eth + 1);
         if (ntohs(hdr->ar_hrd) != ARPHRD_ETHER)
             return;
 

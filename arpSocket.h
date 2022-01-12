@@ -68,7 +68,7 @@ public:
         if (rc <= 0)
             throw std::runtime_error(std::string("Socket poll failed: ") + std::string(strerror(errno)));
 
-        return ArpPacket(_buf, rc);
+        return ArpPacket(_buf.get(), rc);
     }
 
     ~ArpSocket() {
