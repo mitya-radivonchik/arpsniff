@@ -25,7 +25,7 @@ class ArpSocket {
 private:
     int _fd;
     static const size_t _bufSize = 512;
-    std::shared_ptr<uint8_t> _buf;
+    std::unique_ptr<uint8_t> _buf;
 public:
     ArpSocket() : _fd(-1), _buf(nullptr) {}
     ArpSocket(const std::string& ifaceName) : _buf(new uint8_t[_bufSize]) {
