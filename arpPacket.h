@@ -24,7 +24,7 @@ extern "C" {
 class ArpPacket {
 public:
     enum class Type { Request, Reply };
-    typedef std::array<uint8_t, ETH_ALEN> Mac;
+    using Mac = std::array<uint8_t, ETH_ALEN>;
 private:
     bool _valid;
     Type _type;

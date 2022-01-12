@@ -10,7 +10,7 @@
 class VendorMap {
 public:
     static const size_t MacPrefixLen = 3;
-    typedef std::array<uint8_t, MacPrefixLen> MacPrefix;
+    using MacPrefix = std::array<uint8_t, MacPrefixLen>;
 private:
     std::map<MacPrefix, std::string> _vendors;
 
