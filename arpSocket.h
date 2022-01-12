@@ -53,8 +53,10 @@ public:
         other._fd = -1;
     }
     ArpSocket& operator=(ArpSocket&& other) {
-        this->~ArpSocket();
-        new (this) ArpSocket(std::move(other));
+        if (this != &other) {
+            this->~ArpSocket();
+            new (this) ArpSocket(std::move(other));
+        }
         return *this;
     }
 
