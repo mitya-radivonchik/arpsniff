@@ -60,7 +60,7 @@ public:
         return *this;
     }
 
-    ArpPacket Poll(void) {
+    ArpPacket Poll() {
         if (_fd == -1)
             throw std::runtime_error("Polling invalid socket");
 

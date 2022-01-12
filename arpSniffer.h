@@ -35,7 +35,7 @@ public:
 
     ArpSniffer() : _valid(false) {}
 
-    void Poll(void) {
+    void Poll() {
         if (!_valid)
             throw std::runtime_error("Polling invalid ArpSniffer");
 
