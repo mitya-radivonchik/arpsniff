@@ -24,8 +24,10 @@ public:
     }
 
     ArpSniffer& operator=(ArpSniffer&& other) {
-        this->~ArpSniffer();
-        new (this) ArpSniffer(std::move(other));
+        if (this != &other) {
+            this->~ArpSniffer();
+            new (this) ArpSniffer(std::move(other));
+        }
         return *this;
     }
 
