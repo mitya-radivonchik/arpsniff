@@ -79,12 +79,12 @@ public:
         if (!_valid)
             return;
 
-        std::cout << "Type: " << ((_type == Type::Reply) ? "Reply" : "Request") << std::endl;
-        std::cout << "Source MAC: " << mac2str(_srcMac) << std::endl;
-        std::cout << "Source vendor: " << vendors.Lookup(mac2prefix(_srcMac)) << std::endl;
+        std::cout << "Type: " << ((_type == Type::Reply) ? "Reply" : "Request") << "\n";
+        std::cout << "Source MAC: " << mac2str(_srcMac) << "\n";
+        std::cout << "Source vendor: " << vendors.Lookup(mac2prefix(_srcMac)) << "\n";
         if (_type == Type::Reply) {
-            std::cout << "Destination MAC: " << mac2str(_dstMac) << std::endl;
-            std::cout << "Destination vendor: " << vendors.Lookup(mac2prefix(_dstMac)) << std::endl;
+            std::cout << "Destination MAC: " << mac2str(_dstMac) << "\n";
+            std::cout << "Destination vendor: " << vendors.Lookup(mac2prefix(_dstMac)) << "\n";
         }
         std::cout << std::endl;
     }
